@@ -1,5 +1,3 @@
-using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DataModel;
 using Amazon.Lambda.Core;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -9,6 +7,17 @@ namespace Scrapper.Lambda;
 
 public class Function
 {
+    private IUsersRepository _usersRepository;
+    
+    public Function(): this(null)
+    {
+    }
+
+    public Function(IUsersRepository usersRepository)
+    {
+        _usersRepository = usersRepository ?? new UsersRepository();
+    }
+    
     /// <summary>
     /// A simple function that takes a string and does a ToUpper
     /// </summary>
@@ -17,7 +26,8 @@ public class Function
     /// <returns></returns>
     public async Task FunctionHandler(string input, ILambdaContext context)
     {
-        var dynamoContext = new DynamoDBContext(new AmazonDynamoDBClient());
-        await dynamoContext.SaveAsync(new User(Guid.NewGuid().ToString(),input));
+        //var dynamoContext = new DynamoDBContext(new AmazonDynamoDBClient());
+        await _usersRepository.SaveAsync(new User(Guid.NewGuid().ToString(),input));
+        //await dynamoContext.SaveAsync();
     }
 }

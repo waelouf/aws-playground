@@ -30,6 +30,7 @@ namespace Infra
                 },
                 RemovalPolicy = RemovalPolicy.DESTROY
             });
+            
 
             userTable.GrantReadWriteData(lambda);
         }
