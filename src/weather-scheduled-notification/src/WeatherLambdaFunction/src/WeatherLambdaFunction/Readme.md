@@ -38,15 +38,12 @@ If already installed check if new version is available.
 
 Execute unit tests
 ```
-    cd "Scrapper.Lambda/test/Scrapper.Lambda.Tests"
+    cd "WeatherLambdaFunction/test/WeatherLambdaFunction.Tests"
     dotnet test
 ```
 
 Deploy function to AWS Lambda
 ```
-    cd "Scrapper.Lambda/src/Scrapper.Lambda"
+    cd "WeatherLambdaFunction/src/WeatherLambdaFunction"
     dotnet lambda deploy-function
 ```
-
-Helper video:
-https://youtu.be/D6HAbrP5wyQ

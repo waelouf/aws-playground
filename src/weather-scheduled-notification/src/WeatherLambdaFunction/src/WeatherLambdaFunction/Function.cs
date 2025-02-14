@@ -1,21 +1,18 @@
 using Amazon.Lambda.Core;
+using WeatherScheduledNotification.Core;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
-namespace Scrapper.Lambda;
+namespace WeatherLambdaFunction;
 
 public class Function
 {
-    private IUsersRepository _usersRepository;
-    
-    public Function(): this(null)
-    {
-    }
+    private WeatherService _weatherService;
 
-    public Function(IUsersRepository usersRepository)
+    public Function()
     {
-        _usersRepository = usersRepository ?? new UsersRepository();
+        _weatherService = new WeatherService();
     }
     
     /// <summary>
@@ -24,10 +21,11 @@ public class Function
     /// <param name="input">The event for the Lambda function handler to process.</param>
     /// <param name="context">The ILambdaContext that provides methods for logging and describing the Lambda environment.</param>
     /// <returns></returns>
-    public async Task FunctionHandler(string input, ILambdaContext context)
+    public string FunctionHandler(string input, ILambdaContext context)
     {
-        //var dynamoContext = new DynamoDBContext(new AmazonDynamoDBClient());
-        await _usersRepository.SaveAsync(new User(Guid.NewGuid().ToString(),input));
-        //await dynamoContext.SaveAsync();
+        var city = "Westminster, CO";
+        var weatherDetails = _weatherService.GetWeather(city);
+        
+        return input.ToUpper();
     }
 }

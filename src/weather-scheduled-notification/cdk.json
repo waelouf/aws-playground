@@ -1,5 +1,5 @@
 {
-  "app": "dotnet run --project src/Infra/Infra.csproj",
+  "app": "dotnet run --project src/WeatherScheduledNotification/WeatherScheduledNotification.csproj",
   "watch": {
     "include": [
       "**"

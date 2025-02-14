@@ -3,14 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Infra
+namespace WeatherScheduledNotification
 {
     sealed class Program
     {
         public static void Main(string[] args)
         {
             var app = new App();
-            new InfraStack(app, "InfraStack", new StackProps
+            new WeatherScheduledNotificationStack(app, "WeatherScheduledNotificationStack", new StackProps
             {
                 // If you don't specify 'env', this stack will be environment-agnostic.
                 // Account/Region-dependent features and context lookups will not work,
