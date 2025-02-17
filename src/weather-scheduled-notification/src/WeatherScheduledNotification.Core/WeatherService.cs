@@ -1,3 +1,4 @@
+using System.Formats.Asn1;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -12,6 +13,11 @@ public class WeatherService : IWeatherService
     {
          apiKey = Environment.GetEnvironmentVariable("WeatherApi");
         if (apiKey is null) throw new ArgumentNullException("WeatherApi is null");
+    }
+
+    public WeatherService(string key)
+    {
+        apiKey = key;
     }
 
     public WeatherDetails GetWeather(string city)

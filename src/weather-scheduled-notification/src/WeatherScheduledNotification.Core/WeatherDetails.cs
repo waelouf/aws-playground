@@ -39,6 +39,11 @@ using Newtonsoft.Json;
 
         [JsonProperty("code")]
         public int Code { get; set; }
+
+        public override string ToString()
+        {
+            return Text;
+        }
     }
 
     public class CurrentWeather
@@ -111,6 +116,11 @@ using Newtonsoft.Json;
 
         [JsonProperty("gust_kph")]
         public double GustSpeedKph { get; set; }
+
+        public override string ToString()
+        {
+            return $"{TemperatureCelsius} C, {TemperatureFahrenheit} F, {Condition}";
+        }
     }
 
     public class WeatherDetails
@@ -120,4 +130,11 @@ using Newtonsoft.Json;
 
         [JsonProperty("current")]
         public CurrentWeather CurrentWeather { get; set; }
+
+        public override string ToString()
+        {
+            return CurrentWeather.ToString();
+        }
     }
+
+
